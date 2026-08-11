@@ -810,7 +810,7 @@ body {
         overflow-y: auto !important; /* Permite hacer scroll hacia abajo */
         padding-top: 100px; /* Espacio para que el título no choque con el botón */
         padding-bottom: 50px;
-        display: flex !important;
+        
         flex-direction: column;
         align-items: center;
     }
