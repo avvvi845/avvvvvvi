@@ -285,4 +285,24 @@
 
     <script src="main.js"></script>
 </body>
+</html><!-- Menú Inferior (Redes Sociales) -->
+    <div id="menu-inferior">
+        <a href="https://www.instagram.com/avvvvvv_/" target="_blank" class="item-social">[ INSTAGRAM ]</a>
+        <a href="https://www.linkedin.com/in/david-nascimento-4a6590313/" target="_blank" class="item-social">[ LINKEDIN ]</a>
+    </div>
+
+    <!-- Script para ocultar las redes dinámicamente -->
+    <script>
+        const grillaObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'style') {
+                    const grilla = document.getElementById('grilla-principal');
+                    document.getElementById('menu-inferior').style.display = grilla.style.display;
+                }
+            });
+        });
+        grillaObserver.observe(document.getElementById('grilla-principal'), { attributes: true });
+    </script>
+    <script src="main.js"></script>
+</body>
 </html>
