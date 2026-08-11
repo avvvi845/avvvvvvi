@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVVVI - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Capa de Datos de Fondo Masiva -->
+    <div class="data-layer">
+        <span id="browser-info">browser</span> |
+        <span id="window-size">dimensions</span> |
+        <span id="cursor-coords">0 0</span> |
+        <span id="scroll-pos">0px</span> |
+        AVVVI_SYS_01
+    </div>
+
+    <!-- Menú Superior (Audio) -->
+    <div id="menu-superior">
+        <div class="item-menu" id="link-musica" data-img="Imagenes/MUSICA_KORG.png">Música</div>
+        <div class="item-menu" id="link-aovivo" data-img="Imagenes/AOVIVO_MACKIE.png">Som ao vivo</div>
+        <div class="item-menu" id="link-cinema" data-img="Imagenes/CINEMA_BOOM.png">Cinema</div>
+    </div>
+
+    <!-- Menú Superior (Imagen) -->
+    <div id="menu-superior-imagen">
+        <div class="item-menu" id="link-analog" data-img="Imagenes/polaroid900z.png">Analog</div>
+        <div class="item-menu" id="link-digital" data-img="Imagenes/cybershot.png">Digital</div>
+    </div>
+
+    <!-- Contenedor de Imagen Central -->
+    <div id="contenedor-imagen">
+        <img id="imagen-central" src="" alt="Fondo">
+    </div>
+
+    <!-- Caja para selección por arrastre -->
+    <div id="selection-box"></div>
+
+    <!-- Grilla AVVVI -->
+    <div class="contenedor-grilla" id="grilla-principal">
+        <div class="letra" id="letra-a">A</div>
+        <div class="letra letra-v">V</div>
+        <div class="letra letra-v" id="letra-v-centro">V</div>
+        <div class="letra letra-v">V</div>
+        <div class="letra" id="letra-i">I</div>
+    </div>
+
+    <!-- VISTA: Analog (Fotografía) -->
+    <div id="vista-analog">
+        <div id="btn-volver-analog" class="btn-volver btn-volver-inmersivo">[ VOLVER ]</div>
+
+        <div class="gallery-grid-container">
+            <!-- FOTOS BLANCO Y NEGRO -->
+            <img src="Imagenes/ANALOGbike.png" class="gallery-thumb analog-img" alt="Analog Bike" data-index="0" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGburnt1.png" class="gallery-thumb analog-img" alt="Analog Burnt 1" data-index="1" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGburnt2.png" class="gallery-thumb analog-img" alt="Analog Burnt 2" data-index="2" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGchat.png" class="gallery-thumb analog-img" alt="Analog Chat" data-index="3" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGcross.png" class="gallery-thumb analog-img" alt="Analog Cross" data-index="4" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGedificios.png" class="gallery-thumb analog-img" alt="Analog Edificios" data-index="5" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGvelocity.png" class="gallery-thumb analog-img" alt="Analog Velocity" data-index="6" loading="lazy" decoding="async">
+
+            <!-- FOTOS COLOR -->
+            <img src="Imagenes/ANALOG3ventanas.jpg" class="gallery-thumb analog-img" alt="Analog 3 Ventanas" data-index="7" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGbreyner.JPG" class="gallery-thumb analog-img" alt="Analog Breyner" data-index="8" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGescaleras.jpg" class="gallery-thumb analog-img" alt="Analog Escaleras" data-index="9" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGiglesia.jpg" class="gallery-thumb analog-img" alt="Analog Iglesia" data-index="10" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGmadridcolor.jpg" class="gallery-thumb analog-img" alt="Analog Madrid Color" data-index="11" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGnina.png" class="gallery-thumb analog-img" alt="Analog Nina" data-index="12" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGtrumpeteers.JPG" class="gallery-thumb analog-img" alt="Analog Trumpeteers" data-index="13" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGtrumpeteers2.JPG" class="gallery-thumb analog-img" alt="Analog Trumpeteers 2" data-index="14" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGtrumpeteers3.JPG" class="gallery-thumb analog-img" alt="Analog Trumpeteers 3" data-index="15" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGweeders.JPG" class="gallery-thumb analog-img" alt="Analog Weeders" data-index="16" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGzamora.jpg" class="gallery-thumb analog-img" alt="Analog Zamora" data-index="17" loading="lazy" decoding="async">
+
+            <!-- NEGATIVOS ENCONTRADOS -->
+            <img src="Imagenes/ANALOGnegativo1.jpg" class="gallery-thumb analog-img" alt="Analog Negativo 1" data-index="18" loading="lazy" decoding="async">
+            <img src="Imagenes/ANALOGnegativo2.jpg" class="gallery-thumb analog-img" alt="Analog Negativo 2" data-index="19" loading="lazy" decoding="async">
+        </div>
+    </div>
+
+    <!-- VISTA: Digital (Fotografía) -->
+    <div id="vista-digital">
+        <div id="btn-volver-digital" class="btn-volver btn-volver-inmersivo">[ VOLVER ]</div>
+
+        <div class="gallery-grid-container">
+            <!-- FOTOS BLANCO Y NEGRO -->
+            <img src="Imagenes/IMG_5713.JPG" class="gallery-thumb digital-img" alt="Digital BW 1" data-index="0" loading="lazy" decoding="async">
+            <img src="Imagenes/IMG_5727.JPG" class="gallery-thumb digital-img" alt="Digital BW 2" data-index="1" loading="lazy" decoding="async">
+
+            <!-- FOTOS COLOR -->
+            <img src="Imagenes/Digitalpraia1.jpg" class="gallery-thumb digital-img" alt="Digital Praia 1" data-index="2" loading="lazy" decoding="async">
+            <img src="Imagenes/Digitalpraia2.jpg" class="gallery-thumb digital-img" alt="Digital Praia 2" data-index="3" loading="lazy" decoding="async">
+        </div>
+    </div>
+
+    <!-- Lightbox Global (Para Analog y Digital) -->
+    <div id="lightbox" class="hidden">
+        <div id="lightbox-close">[ X ]</div>
+        <div id="lightbox-prev" class="lightbox-nav">[ &lt; ]</div>
+        <img id="lightbox-img" src="" alt="Vista ampliada">
+        <div id="lightbox-next" class="lightbox-nav">[ &gt; ]</div>
+        <div id="lightbox-counter">1 / 1</div>
+    </div>
+
+    <!-- Vista de Música -->
+    <div id="vista-musica">
+        <div class="music-bg-image" id="music-bg"></div>
+        <div id="btn-volver-musica" class="btn-volver">[ VOLVER ]</div>
+
+        <div class="constelacion-puntos">
+            <div class="hotspot" id="spot-1" data-audio="audio-1" data-name="01 // PISTAMAN"></div>
+            <div class="hotspot" id="spot-2" data-audio="audio-2" data-name="02 // PORELCULONO"></div>
+            <div class="hotspot" id="spot-3" data-audio="audio-3" data-name="03 // KIKSANBUX"></div>
+            <div class="hotspot" id="spot-4" data-audio="audio-4" data-name="04 // 2VUELTA"></div>
+            <div class="hotspot" id="spot-5" data-audio="audio-5" data-name="05 // TODODYNADA"></div>
+            <div class="hotspot" id="spot-6" data-audio="audio-6" data-name="06 // CALIENTE"></div>
+            <div class="hotspot" id="spot-7" data-audio="audio-7" data-name="07 // FINAL"></div>
+        </div>
+
+        <div class="reproductor-panel">
+            <div id="audio-status">[ SELECCIONA UN NODO ]</div>
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+            <div id="audio-times">
+                <span id="current-time">00:00</span>
+                <span id="total-duration">00:00</span>
+            </div>
+            <!-- Slider de volumen -->
+            <div class="volume-container">
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+            </div>
+        </div>
+
+        <div class="bandcamp-link">
+            Mas en <a href="https://avi845.bandcamp.com/" target="_blank">Bandcamp</a>
+        </div>
+    </div>
+
+    <!-- Vista de Som ao Vivo -->
+    <div id="vista-aovivo">
+        <div id="btn-volver-aovivo" class="btn-volver btn-volver-inmersivo">[ VOLVER ]</div>
+
+        <div class="doodle-block">
+            <div class="doodle-text">
+                <div class="doodle-title">Live Sound Operator / Operador de Boom</div>
+                <div class="doodle-company">Universidade Católica Portuguesa - Centro Regional do Porto<br></div>
+                <div class="doodle-desc">
+               
+                    A Ilha - Peça artística de Marco Martins | Registo Documental / Making-of<br>
+                    Film Education Conference,<br>
+                    CODA 2026<br>
+                    Ciclo Conversation with a Leader (com António Rios de Amorim)<br>
+                    Ciclo Art + Tech x Cosmos (Danielle Braithwaite-Shirley),<br>
+                    Diversos Open Days, entre outros.
+                </div>
+            </div>
+            <img src="Imagenes/BoomOperatorDoodle.png" class="doodle-img" alt="Operador de Boom" loading="lazy" decoding="async">
+        </div>
+
+        <div class="doodle-block">
+            <div class="doodle-text">
+                <div class="doodle-title">Técnico de Produção Áudio</div>
+                <div class="doodle-company">MEDIALUSO <br> · Ilha da Madeira, Portugal</div>
+                <div class="doodle-desc">
+                    Integração na equipa técnica de produção audiovisual em transmissões em direto, entretenimento, desporto e eventos de grande dimensão. Operação de som em direto, microfonia e assistência de imagem.<br><br>
+                    Projetos de Destaque:<br>
+                    <strong>Televisão e Entretenimento:</strong> Assistência e operação técnica "Somos Portugal" (TVI) e "O Preço Certo" (RTP).<br>
+                    <strong>Desporto:</strong> Assistência técnica em transmissões para a SportTV em jogos da Primeira e Segunda Liga de futebol profissional.<br>
+                    <strong>Eventos e Festivais:</strong> Apoio logístico e técnico na montagem e operação de sistemas de som para o festival Summer Opening 2022 e cobertura do Rali Vinho da Madeira 2022.
+                </div>
+            </div>
+            <img src="Imagenes/DoodleFutbol.png" class="doodle-img" alt="Medialuso Futbol" loading="lazy" decoding="async">
+        </div>
+
+        <div class="doodle-block">
+            <div class="doodle-text">
+                <div class="doodle-title">Técnico audiovisual</div>
+                <div class="doodle-company">NMT TV (NAMINHATERRA TV) ·<br>· Ilha da Madeira, Portugal</div>
+                <div class="doodle-desc">
+                    Apoio técnico e criativo em produções audiovisuais e reportagens para a NAMINHATERRA TV, participando ativamente nas várias fases da cadeia de produção.<br><br>
+                    Principais responsabilidades:<br>
+                    <strong>Operação de câmara:</strong> Captação de imagem e som em contexto de reportagem e conteúdos multimédia.<br>
+                    <strong>Pós-produção:</strong> Edição de vídeo e tratamento de áudio.<br>
+                    <strong>Design gráfico:</strong> Criação de grafismo e elementos visuais para suporte às transmissões e conteúdos.
+                </div>
+            </div>
+            <img src="Imagenes/DoodleMesaSom.png" class="doodle-img" alt="NMT TV Mesa de Som" loading="lazy" decoding="async">
+        </div>
+    </div>
+
+    <!-- Vista de Cinema -->
+    <div id="vista-cinema">
+        <div id="btn-volver-cinema" class="btn-volver btn-volver-inmersivo">[ VOLVER ]</div>
+
+        <div class="exp-block">
+            <img src="Imagenes/Ailha1.jpg" class="bg-daguerreotype daguerreotype-filter" alt="A Ilha" loading="lazy" decoding="async">
+            <div class="exp-text-container">
+                <div class="exp-title">A Ilha</div>
+                <div class="exp-company">Dirigido por Marco Martins · Registo Documental / Making-of</div>
+                <div class="exp-desc">
+                    <strong>Rol:</strong> Operador de Boom<br><br>
+                </div>
+            </div>
+        </div>
+
+        <div class="exp-block">
+            <img src="Imagenes/Milene1.jpg" class="bg-daguerreotype daguerreotype-filter" alt="Milene" loading="lazy" decoding="async">
+            <div class="exp-text-container">
+                <div class="exp-title">Milene</div>
+                <div class="exp-company">Cortometraje · Dirigido por Francisco Candido</div>
+                <div class="exp-desc">
+                    <strong>Rol:</strong> Director de Sonido y Operador de Boom<br><br>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="video-block">
+            <div class="exp-text-container video-info-container">
+                <div class="exp-title">Monstros Fantásticos</div>
+                <div class="exp-company">Sound Design / Post-producción</div>
+                <div class="video-responsive-wrapper">
+                    <iframe src="https://player.vimeo.com/video/1215781473?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-block">
+            <div class="exp-text-container video-info-container">
+                <div class="exp-title">Suits</div>
+                <div class="exp-company">Sound Design / Post-producción</div>
+                <div class="video-responsive-wrapper">
+                    <iframe src="https://player.vimeo.com/video/1215784148?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-block">
+            <div class="exp-text-container video-info-container">
+                <div class="exp-title">Publicidade</div>
+                <div class="exp-company">Sound Design / Post-producción</div>
+                <div class="video-responsive-wrapper">
+                    <iframe src="https://player.vimeo.com/video/1215596940?color=ffffff&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vista de Video (YouTube Grid 4x2) -->
+    <div id="vista-video">
+        <div id="btn-volver-video" class="btn-volver btn-volver-inmersivo">[ VOLVER ]</div>
+
+        <div class="video-grid-container">
+            <a href="https://www.youtube.com/watch?v=d7oUa0WShsk" target="_blank" class="video-thumb-link">
+                <img src="https://img.youtube.com/vi/d7oUa0WShsk/maxresdefault.jpg" class="video-thumb" alt="porelculono" loading="lazy" decoding="async">
+            </a>
+            <a href="https://www.youtube.com/watch?v=_oYH7nhD1rs" target="_blank" class="video-thumb-link">
+                <img src="https://img.youtube.com/vi/_oYH7nhD1rs/maxresdefault.jpg" class="video-thumb" alt="Influenza" loading="lazy" decoding="async">
+            </a>
+            <a href="https://www.youtube.com/watch?v=LTKZ54fnQjA" target="_blank" class="video-thumb-link">
+                <img src="https://img.youtube.com/vi/LTKZ54fnQjA/maxresdefault.jpg" class="video-thumb" alt="Memoria" loading="lazy" decoding="async">
+            </a>
+            <a href="https://www.youtube.com/watch?v=dtLH-R5ZaSk" target="_blank" class="video-thumb-link">
+                <img src="https://img.youtube.com/vi/dtLH-R5ZaSk/maxresdefault.jpg" class="video-thumb" alt="MALANDREO" loading="lazy" decoding="async">
+            </a>
+            <a href="https://www.youtube.com/watch?v=Ng9fqHxnSro" target="_blank" class="video-thumb-link">
+                <img src="https://img.youtube.com/vi/Ng9fqHxnSro/maxresdefault.jpg" class="video-thumb" alt="DMT" loading="lazy" decoding="async">
+            </a>
+            <a href="https://www.youtube.com/watch?v=OJ8HpOnWizI" target="_blank" class="video-thumb-link">
+                <img src="https://img.youtube.com/vi/OJ8HpOnWizI/maxresdefault.jpg" class="video-thumb" alt="Intro Proyecto lateral" loading="lazy" decoding="async">
+            </a>
+            <a href="https://www.youtube.com/watch?v=ZFVzOmc8Pc8" target="_blank" class="video-thumb-link">
+                <img src="https://img.youtube.com/vi/ZFVzOmc8Pc8/maxresdefault.jpg" class="video-thumb" alt="Outro Proyecto Lateral" loading="lazy" decoding="async">
+            </a>
+            <a href="https://www.youtube.com/watch?v=BNz4-9TW4p0" target="_blank" class="video-thumb-link">
+                <img src="https://img.youtube.com/vi/BNz4-9TW4p0/maxresdefault.jpg" class="video-thumb" alt="Chirp" loading="lazy" decoding="async">
+            </a>
+        </div>
+    </div>
+
+    <!-- Vista Sobre Mim -->
+    <div id="vista-sobremim">
+        <div id="btn-volver-sobremim" class="btn-volver">[ VOLVER ]</div>
+
+        <div class="sobremim-container">
+            <div class="sobremim-content-wrapper">
+                <div class="sobremim-img-col">
+                    <img src="Imagenes/BIO1.png" alt="David Nascimento" class="bio-image daguerreotype-filter" id="bio-image">
+                </div>
+                <div class="sobremim-text-col">
+                    <div class="lang-selector">
+                        [
+                        <span class="lang-btn" data-lang="en">EN</span> /
+                        <span class="lang-btn" data-lang="es">ES</span> /
+                        <span class="lang-btn" data-lang="pt">PT</span>
+                        ]
+                    </div>
+                    <div class="sobremim-header">DAVID NASCIMENTO (AKA AVVVI)</div>
+                    <div class="sobremim-texto" id="sobremim-p1"></div>
+                    <div class="sobremim-texto" id="sobremim-p2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elementos de Audio -->
+    <audio id="audio-1" preload="metadata" src="Musica/avvvi - Pequeño pero matón - 01 pistaman.mp3"></audio>
+    <audio id="audio-2" preload="metadata" src="Musica/avvvi - Pequeño pero matón - 02 porelculono.mp3"></audio>
+    <audio id="audio-3" preload="metadata" src="Musica/kiksanbux - PISTA 1.mp3"></audio>
+    <audio id="audio-4" preload="metadata" src="Musica/avvvi - Pequeño pero matón - 03 2vuelta.mp3"></audio>
+    <audio id="audio-5" preload="metadata" src="Musica/avvvi - Pequeño pero matón - 04 todoynada.mp3"></audio>
+    <audio id="audio-6" preload="metadata" src="Musica/avvvi - Pequeño pero matón - 05 caliente.mp3"></audio>
+    <audio id="audio-7" preload="metadata" src="Musica/avvvi - Pequeño pero matón - 06 final.mp3"></audio>
+
+    <script src="main.js"></script>
+</body>
+</html>
