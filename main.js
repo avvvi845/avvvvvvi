@@ -4,11 +4,69 @@ const windowSizeSpan = document.getElementById('window-size');
 const cursorCoordsSpan = document.getElementById('cursor-coords');
 const scrollPosSpan = document.getElementById('scroll-pos');
 
+// Detección si es dispositivo móvil para adaptar la visualización inicial
+const esMovil = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
 browserInfoSpan.innerText = navigator.userAgent.toLowerCase();
 windowSizeSpan.innerText = `${window.innerWidth}px × ${window.innerHeight}px`;
 
+// --- INTEGRACIÓN DE SENSORES (GIROSCOPIO Y ACELERÓMETRO) PARA MÓVILES ---
+let gyroData = { alpha: 0, beta: 0, gamma: 0 };
+let accelData = { x: 0, y: 0, z: 0 };
+
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', (event) => {
+        gyroData.alpha = Math.round(event.alpha || 0);
+        gyroData.beta = Math.round(event.beta || 0);
+        gyroData.gamma = Math.round(event.gamma || 0);
+
+        if (esMovil && dataLayer && dataLayer.classList.contains('activa')) {
+            actualizarDatosSensoresEnPantalla();
+        }
+    });
+}
+
+if (window.DeviceMotionEvent) {
+    window.addEventListener('devicemotion', (event) => {
+        if (event.acceleration) {
+            accelData.x = (event.acceleration.x || 0).toFixed(1);
+            accelData.y = (event.acceleration.y || 0).toFixed(1);
+            accelData.z = (event.acceleration.z || 0).toFixed(1);
+        }
+    });
+}
+
+function actualizarDatosSensoresEnPantalla() {
+    if (browserInfoSpan) {
+        browserInfoSpan.innerText = `GYRO α:${gyroData.alpha}° β:${gyroData.beta}° γ:${gyroData.gamma}°`;
+    }
+    if (windowSizeSpan) {
+        windowSizeSpan.innerText = `ACCEL x:${accelData.x} y:${accelData.y} z:${accelData.z}`;
+    }
+    if (cursorCoordsSpan) {
+        cursorCoordsSpan.innerText = `ROT [${gyroData.beta}, ${gyroData.gamma}]`;
+    }
+}
+
+// Solicitud de permisos automática en iOS (al primer toque en pantalla)
+function solicitarPermisosSensores() {
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission()
+            .then(response => {
+                if (response === 'granted') {
+                    console.log("Sensores permitidos");
+                }
+            })
+            .catch(console.error);
+    }
+}
+document.addEventListener('click', solicitarPermisosSensores, { once: true });
+
+// Eventos de ratón estándar (para ordenador)
 document.addEventListener('mousemove', (e) => {
-    cursorCoordsSpan.innerText = `${e.clientX}px, ${e.clientY}px`;
+    if (!esMovil) {
+        cursorCoordsSpan.innerText = `${e.clientX}px, ${e.clientY}px`;
+    }
 });
 
 document.addEventListener('scroll', () => {
@@ -35,6 +93,9 @@ document.addEventListener('touchend', function(e) {
         if (!e.target.closest('.letra') && !e.target.closest('a') && !e.target.closest('.item-menu') && !e.target.closest('.btn-volver')) {
             if (dataLayer) {
                 dataLayer.classList.toggle('activa');
+                if (dataLayer.classList.contains('activa') && esMovil) {
+                    actualizarDatosSensoresEnPantalla();
+                }
             }
             e.preventDefault(); // Evita zoom no deseado en doble click
         }
