@@ -617,3 +617,86 @@ daguerreotypeImages.forEach(img => {
         }, 5000);
     });
 });
+
+/* --- CONEXIÓN AUTOMÁTICA CON SANITY.IO --- */
+const SANITY_PROJECT_ID = "xxfr03vi";
+const SANITY_DATASET = "production";
+
+async function cargarGaleriaSanity() {
+    const queryAnalog = encodeURIComponent('*[_type == "analogPhoto"] | order(order asc) { title, category, "imageUrl": image.asset->url }');
+    const urlAnalog = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${SANITY_DATASET}?query=${queryAnalog}`;
+
+    const queryDigital = encodeURIComponent('*[_type == "digitalPhoto"] | order(order asc) { title, category, "imageUrl": image.asset->url }');
+    const urlDigital = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${SANITY_DATASET}?query=${queryDigital}`;
+
+    try {
+        // Cargar Análogas
+        const resAnalog = await fetch(urlAnalog);
+        const dataAnalog = await resAnalog.json();
+        const analogGrid = document.getElementById('analog-grid');
+
+        if (analogGrid && dataAnalog.result) {
+            analogGrid.innerHTML = "";
+            dataAnalog.result.forEach((foto, index) => {
+                if (foto.imageUrl) {
+                    const img = document.createElement('img');
+                    img.src = foto.imageUrl;
+                    img.className = "gallery-thumb analog-img";
+                    img.alt = foto.title || "Analog Photo";
+                    img.setAttribute('data-index', index);
+                    img.loading = "lazy";
+                    img.decoding = "async";
+                    analogGrid.appendChild(img);
+                }
+            });
+        }
+
+        // Cargar Digitales
+        const resDigital = await fetch(urlDigital);
+        const dataDigital = await resDigital.json();
+        const digitalGrid = document.getElementById('digital-grid');
+
+        if (digitalGrid && dataDigital.result) {
+            digitalGrid.innerHTML = "";
+            dataDigital.result.forEach((foto, index) => {
+                if (foto.imageUrl) {
+                    const img = document.createElement('img');
+                    img.src = foto.imageUrl;
+                    img.className = "gallery-thumb digital-img";
+                    img.alt = foto.title || "Digital Photo";
+                    img.setAttribute('data-index', index);
+                    img.loading = "lazy";
+                    img.decoding = "async";
+                    digitalGrid.appendChild(img);
+                }
+            });
+        }
+
+        // Reactivar los eventos del Lightbox
+        inicializarLightboxDinamico();
+
+    } catch (error) {
+        console.error("Error al cargar las fotos desde Sanity:", error);
+    }
+}
+
+function inicializarLightboxDinamico() {
+    document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            const vistaAnalogEl = document.getElementById('vista-analog');
+            const vistaDigitalEl = document.getElementById('vista-digital');
+
+            if (vistaAnalogEl && vistaAnalogEl.style.display === 'flex') {
+                currentGalleryThumbs = document.querySelectorAll('.analog-img');
+            } else if (vistaDigitalEl && vistaDigitalEl.style.display === 'flex') {
+                currentGalleryThumbs = document.querySelectorAll('.digital-img');
+            }
+            const index = parseInt(this.getAttribute('data-index'));
+            updateLightbox(index);
+            lightbox.classList.remove('hidden');
+        });
+    });
+}
+
+// Ejecutar al cargar la página
+window.addEventListener('DOMContentLoaded', cargarGaleriaSanity);
