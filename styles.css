@@ -799,15 +799,18 @@ body {
 
 @media (max-width: 768px) {
     #vista-aovivo {
-        padding-top: 80px;
+        position: relative;
+        padding-top: 100px; /* Le da espacio arriba para que no choque con el botón */
         padding-bottom: 50px;
         align-items: flex-start;
     }
 
     #btn-volver-aovivo {
         position: absolute;
-        top: 20px;
+        top: 25px;
         left: 20px;
+        z-index: 9999; /* Lo pone por encima de cualquier otro elemento */
+        color: #000000 !important; /* <--- ESTO SOLUCIONA TU CAPTURA: Fuerza el texto a negro puro */
     }
 
     .doodle-block {
@@ -818,20 +821,14 @@ body {
         padding: 0 25px;
         box-sizing: border-box;
         margin-bottom: 60px;
-
-        /* Elimina cualquier línea divisoria, borde o sombra heredada */
-        border: none !important;
+        border: none !important; /* Elimina líneas fantasmas */
         box-shadow: none !important;
     }
 
     .doodle-text {
         width: 100%;
         text-align: left;
-
-        /* Acortamos drásticamente el espacio entre el texto y el dibujo */
-        margin-bottom: 5px !important;
-
-        /* Por si la línea fina venía de aquí */
+        margin-bottom: 5px !important; /* Acorta el espacio gigante entre texto y dibujo */
         border: none !important;
     }
 
@@ -844,8 +841,6 @@ body {
         transform: none !important;
         width: 80%;
         max-width: 300px;
-
-        /* Forzamos que no haya margen extra arriba de la imagen */
         margin: 0 auto !important;
         display: block;
     }
