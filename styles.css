@@ -800,19 +800,20 @@ body {
 @media (max-width: 768px) {
     #vista-aovivo {
         position: relative;
-        padding-top: 100px; /* Le da espacio arriba para que no choque con el botón */
+        /* Aumentamos el padding para empujar el título más abajo y hacerle hueco al botón */
+        padding-top: 150px;
         padding-bottom: 50px;
         align-items: flex-start;
     }
 
     #btn-volver-aovivo {
         position: absolute;
-        top: 25px;
+        /* Lo bajamos drásticamente para que escape de la barra de Brave/Safari */
+        top: 80px;
         left: 20px;
-        z-index: 9999; /* Lo pone por encima de cualquier otro elemento */
-        color: #000000 !important; /* <--- ESTO SOLUCIONA TU CAPTURA: Fuerza el texto a negro puro */
+        z-index: 9999;
+        color: #000000 !important;
     }
-
     .doodle-block {
         display: flex;
         flex-direction: column;
