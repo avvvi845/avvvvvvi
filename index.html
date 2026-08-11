@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AVVVI - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos estrictos para el menú inferior (separado de la grilla) */
+        #menu-inferior {
+            position: fixed;
+            bottom: 8%; /* Lo ancla a la parte inferior de la pantalla */
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 60px; /* Separación entre Instagram y LinkedIn */
+            z-index: 100;
+        }
+        .item-social {
+            color: #000000 !important; /* Fuerza el color negro puro */
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 0.95rem;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        .item-social:hover {
+            opacity: 0.4;
+        }
+    </style>
 </head>
 <body>
 
@@ -45,6 +69,12 @@
         <div class="letra letra-v" id="letra-v-centro">V</div>
         <div class="letra letra-v">V</div>
         <div class="letra" id="letra-i">I</div>
+    </div>
+
+    <!-- Menú Inferior (Redes Sociales) anclado al fondo -->
+    <div id="menu-inferior">
+        <a href="https://www.instagram.com/avvvvvv_/" target="_blank" class="item-social">[ INSTAGRAM ]</a>
+        <a href="https://www.linkedin.com/in/david-nascimento-4a6590313/" target="_blank" class="item-social">[ LINKEDIN ]</a>
     </div>
 
     <!-- VISTA: Analog (Fotografía) -->
@@ -282,12 +312,6 @@
     <audio id="audio-5" preload="metadata" src="Musica/avvvi - Pequeño pero matón - 04 todoynada.mp3"></audio>
     <audio id="audio-6" preload="metadata" src="Musica/avvvi - Pequeño pero matón - 05 caliente.mp3"></audio>
     <audio id="audio-7" preload="metadata" src="Musica/avvvi - Pequeño pero matón - 06 final.mp3"></audio>
-
-<!-- Menú Inferior (Redes Sociales) -->
-    <div id="menu-inferior">
-        <a href="https://www.instagram.com/avvvvvv_/" target="_blank" class="item-social">[ INSTAGRAM ]</a>
-        <a href="https://www.linkedin.com/in/david-nascimento-4a6590313/" target="_blank" class="item-social">[ LINKEDIN ]</a>
-    </div>
 
     <!-- Script para ocultar las redes dinámicamente -->
     <script>
