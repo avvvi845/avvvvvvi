@@ -313,18 +313,27 @@
     <audio id="audio-6" preload="metadata" src="Musica/avvvi - Pequeño pero matón - 05 caliente.mp3"></audio>
     <audio id="audio-7" preload="metadata" src="Musica/avvvi - Pequeño pero matón - 06 final.mp3"></audio>
 
-    <!-- Script para ocultar las redes dinámicamente -->
+    <!-- Script para ocultar as redes dinamicamente -->
     <script>
         const grillaObserver = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.attributeName === 'style') {
                     const grilla = document.getElementById('grilla-principal');
-                    document.getElementById('menu-inferior').style.display = grilla.style.display;
+                    const menuInferior = document.getElementById('menu-inferior');
+
+                    if (grilla.style.display === 'none') {
+                        menuInferior.style.display = 'none';
+                    } else {
+                        // Forzamos a que vuelva a su estado horizontal original
+                        menuInferior.style.display = 'flex';
+                    }
                 }
             });
         });
         grillaObserver.observe(document.getElementById('grilla-principal'), { attributes: true });
     </script>
     <script src="main.js"></script>
+</body>
+</html>
 </body>
 </html>
