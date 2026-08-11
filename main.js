@@ -23,6 +23,25 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// --- LÓGICA DOUBLE TAP EN MÓVILES PARA CAPA DE DATOS ---
+let ultimoToque = 0;
+document.addEventListener('touchend', function(e) {
+    let tiempoActual = new Date().getTime();
+    let longitudToque = tiempoActual - ultimoToque;
+
+    // Si el tiempo entre toques es menor a 300ms, es un doble toque
+    if (longitudToque < 300 && longitudToque > 0) {
+        // Aseguramos que no se esté tocando un enlace, botón o letra interactiva
+        if (!e.target.closest('.letra') && !e.target.closest('a') && !e.target.closest('.item-menu') && !e.target.closest('.btn-volver')) {
+            if (dataLayer) {
+                dataLayer.classList.toggle('activa');
+            }
+            e.preventDefault(); // Evita zoom no deseado en doble click
+        }
+    }
+    ultimoToque = tiempoActual;
+});
+
 const letraA = document.getElementById('letra-a');
 const letraI = document.getElementById('letra-i');
 const letrasV = document.querySelectorAll('.letra-v');
@@ -81,7 +100,7 @@ itemsMenu.forEach(item => {
     });
 });
 
-/* --- LÓGICA DE SELECCIÓN POR ARRASTRE (MARQUEE) --- */
+/* --- LÓGICA DE SELECCIÓN POR ARRASTRE (RATÓN Y TÁCTIL) --- */
 const selectionBox = document.getElementById('selection-box');
 const todasLasLetras = document.querySelectorAll('.letra');
 const vistaSobreMim = document.getElementById('vista-sobremim');
@@ -91,30 +110,30 @@ let isSelecting = false;
 let startX = 0;
 let startY = 0;
 
-document.addEventListener('mousedown', (e) => {
-    if (grillaPrincipal.style.display !== 'none') {
-        if (e.target.closest('#menu-superior') || e.target.closest('#menu-superior-imagen') || e.target.closest('.letra') || e.target.closest('.btn-volver')) return;
+// Función común para validar si se puede iniciar la selección
+function puedeIniciarSeleccion(target) {
+    if (grillaPrincipal.style.display === 'none') return false;
+    if (target.closest('#menu-superior') || target.closest('#menu-superior-imagen') || target.closest('.letra') || target.closest('.btn-volver')) return false;
+    return true;
+}
 
-        isSelecting = true;
-        startX = e.clientX;
-        startY = e.clientY;
+// Función auxiliar para evitar código duplicado al iniciar el arrastre
+function iniciarSeleccion(x, y) {
+    isSelecting = true;
+    startX = x;
+    startY = y;
 
-        selectionBox.style.left = `${startX}px`;
-        selectionBox.style.top = `${startY}px`;
-        selectionBox.style.width = '0px';
-        selectionBox.style.height = '0px';
-        selectionBox.style.display = 'block';
+    selectionBox.style.left = `${startX}px`;
+    selectionBox.style.top = `${startY}px`;
+    selectionBox.style.width = '0px';
+    selectionBox.style.height = '0px';
+    selectionBox.style.display = 'block';
 
-        todasLasLetras.forEach(letra => letra.classList.remove('selected'));
-    }
-});
+    todasLasLetras.forEach(letra => letra.classList.remove('selected'));
+}
 
-document.addEventListener('mousemove', (e) => {
-    if (!isSelecting) return;
-
-    const currentX = e.clientX;
-    const currentY = e.clientY;
-
+// Función común para actualizar la caja y colisiones
+function updateSelectionBox(currentX, currentY) {
     const width = Math.abs(currentX - startX);
     const height = Math.abs(currentY - startY);
     const left = Math.min(currentX, startX);
@@ -142,11 +161,10 @@ document.addEventListener('mousemove', (e) => {
             letra.classList.remove('selected');
         }
     });
-});
+}
 
-document.addEventListener('mouseup', () => {
-    if (!isSelecting) return;
-    isSelecting = false;
+// Función común para el final de la selección
+function handleSelectionEnd() {
     selectionBox.style.display = 'none';
 
     const letrasSeleccionadas = document.querySelectorAll('.letra.selected');
@@ -167,6 +185,41 @@ document.addEventListener('mouseup', () => {
     setTimeout(() => {
         todasLasLetras.forEach(letra => letra.classList.remove('selected'));
     }, 300);
+}
+
+// --- EVENTOS DE RATÓN (DESKTOP) ---
+document.addEventListener('mousedown', (e) => {
+    if (!puedeIniciarSeleccion(e.target)) return;
+    iniciarSeleccion(e.clientX, e.clientY);
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (!isSelecting) return;
+    updateSelectionBox(e.clientX, e.clientY);
+});
+
+document.addEventListener('mouseup', () => {
+    if (!isSelecting) return;
+    isSelecting = false;
+    handleSelectionEnd();
+});
+
+// --- EVENTOS TÁCTILES (MÓVIL) ---
+document.addEventListener('touchstart', (e) => {
+    if (!puedeIniciarSeleccion(e.target)) return;
+    iniciarSeleccion(e.touches[0].clientX, e.touches[0].clientY);
+}, { passive: false });
+
+document.addEventListener('touchmove', (e) => {
+    if (!isSelecting) return;
+    if (e.cancelable) e.preventDefault();
+    updateSelectionBox(e.touches[0].clientX, e.touches[0].clientY);
+}, { passive: false });
+
+document.addEventListener('touchend', () => {
+    if (!isSelecting) return;
+    isSelecting = false;
+    handleSelectionEnd();
 });
 
 btnVolverSobreMim.addEventListener('click', () => {
@@ -618,7 +671,7 @@ daguerreotypeImages.forEach(img => {
     });
 });
 
-/* --- CONEXIÓN AUTOMÁTICA CON SANITY.IO --- */
+/* --- CONEXIÓN AUTOMÁTICA CON SANITY.IO (OPTIMIZADA) --- */
 const SANITY_PROJECT_ID = "xxfr03vi";
 const SANITY_DATASET = "production";
 
@@ -640,7 +693,7 @@ async function cargarGaleriaSanity() {
             dataAnalog.result.forEach((foto, index) => {
                 if (foto.imageUrl) {
                     const img = document.createElement('img');
-                    img.src = foto.imageUrl;
+                    img.src = foto.imageUrl + "?w=800&auto=format";
                     img.className = "gallery-thumb analog-img";
                     img.alt = foto.title || "Analog Photo";
                     img.setAttribute('data-index', index);
@@ -661,7 +714,7 @@ async function cargarGaleriaSanity() {
             dataDigital.result.forEach((foto, index) => {
                 if (foto.imageUrl) {
                     const img = document.createElement('img');
-                    img.src = foto.imageUrl;
+                    img.src = foto.imageUrl + "?w=800&auto=format";
                     img.className = "gallery-thumb digital-img";
                     img.alt = foto.title || "Digital Photo";
                     img.setAttribute('data-index', index);
