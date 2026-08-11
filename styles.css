@@ -660,11 +660,12 @@ body {
     background-color: #ffffff;
     display: none;
     z-index: 100;
+    overflow-y: auto; /* Permite scroll general en dispositivos móviles */
 }
 
 .sobremim-container {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #ffffff;
     position: relative;
 }
@@ -673,7 +674,7 @@ body {
     display: grid;
     grid-template-columns: 1.215fr 1fr;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     position: absolute;
     top: 0;
     left: 0;
@@ -759,20 +760,42 @@ body {
 }
 
 @media (max-width: 900px) {
+    #vista-sobremim {
+        position: fixed !important;
+        overflow-y: auto !important; /* Habilita el desplazamiento en toda la vista Sobre Mim */
+        height: 100vh;
+    }
+
+    .sobremim-container {
+        height: auto;
+        min-height: 100%;
+    }
+
     .sobremim-content-wrapper {
         grid-template-columns: 1fr;
         height: auto;
         position: relative;
     }
+
     .sobremim-img-col {
         width: 100%;
         height: 50vh;
         position: relative;
     }
-    .sobremim-text-col {
-        padding: 4vh 5vw;
-        height: auto;
+
+    .bio-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
+
+    .sobremim-text-col {
+        padding: 5vh 6vw 10vh 6vw; /* Añade respiro abajo para leer bien con scroll */
+        height: auto;
+        overflow-y: visible;
+    }
+
     .doodle-block {
         flex-direction: column;
         justify-content: center;

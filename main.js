@@ -610,11 +610,11 @@ const dict = {
         p2: "During his bachelor's degree in Sound and Image at the Catholic University of Porto, he created two art installations — Presión (2025) and Todo es Fácil (2026) —, the animated short film El Taxi (2024), and numerous sound design works for cinema, which you can check out <a class='link-cine-trigger'>here</a>."
     },
     es: {
-        p1: "David Nascimento (Caracas, 2003) es un artista y técnico audiovisual versátil en cualquier área multimedia pero especializado en sonido. Desde temprana edad experimentando en ableton live, descubrió su interés por la música y las artes y desde entonces busca mantener una carrera profesional aprendiendo y haciendo lo que le apasiona.",
+        p1: "David Nascimento (Caracas, 2003) es un artista y versátil técnico audiovisual especializado en sonido. Desde temprana edad experimentando en ableton live, descubrió su interés por la música y las artes y desde entonces busca mantener una carrera profesional aprendiendo y haciendo lo que le apasiona.",
         p2: "Durante su licenciatura en Som e Imagem en la Universidad Católica de Oporto, realizó dos instalaciones artísticas — Presión (2025) y Todo es Fácil (2026) —, el cortometraje de animación El Taxi (2024) y numerosos trabajos de sonoplastia para cine, que puedes revisar <a class='link-cine-trigger'>aquí</a>."
     },
     pt: {
-        p1: "David Nascimento (Caracas, 2003) é um artista e técnico audiovisual versátil em qualquer área multimédia, mas especializado em som. Ao experimentar no Ableton Live desde cedo, descobriu o seu interesse pela música e pelas artes e, desde então, procura manter uma carreira profissional aprendendo e fazendo o que o apaixona.",
+        p1: "David Nascimento (Caracas, 2003) é um artista e versátil técnico audiovisual especializado em som. Ao experimentar no Ableton Live desde cedo, descobriu o seu interesse pela música e pelas artes e, desde então, procura manter uma carreira profissional aprendendo e fazendo o que o apaixona.",
         p2: "Durante a licenciatura em Som e Imagem na Universidade Católica Portuguesa (Porto), realizou duas peças de instalação artística — Pressão (2025) e Todo es Fácil (2026) —, a curta-metragem de animação El Taxi (2024) e diversos trabalhos de sonoplastia para cinema, que podes consultar <a class='link-cine-trigger'>aqui</a>."
     }
 };
