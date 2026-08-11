@@ -792,3 +792,71 @@ body {
         padding: 80px 20px 20px 20px;
     }
 }
+
+/* en movil */
+
+
+@media (max-width: 768px) {
+    /* espacio arriba para que el botón [ VOLTAR ] no choque con el texto */
+    #vista-aovivo {
+        padding-top: 80px;
+        padding-bottom: 50px;
+        align-items: flex-start; /* Alinea el contenido arriba */
+    }
+
+    /* Asegurar que el botón de volver se quede en su sitio */
+    #btn-volver-aovivo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
+    /* Transformar el bloque en una columna para apilar elementos */
+    .doodle-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 0 25px;
+        box-sizing: border-box;
+        margin-bottom: 60px; /* Separación entre cada experiencia laboral */
+    }
+
+    /* Ajustar el texto para que ocupe todo el ancho de la pantalla */
+    .doodle-text {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 30px; /* Espacio de respiro antes de la imagen */
+    }
+
+    /* Forzar a la imagen a ir abajo y cancelar posiciones absolutas de ordenador */
+    .doodle-img {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        width: 80%; /* Tamaño ideal para móvil */
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* Ajustes finos de tipografía para móviles (como en tu referencia) */
+    .doodle-title {
+        font-size: 1.8rem;
+        line-height: 1.1;
+        margin-bottom: 10px;
+    }
+
+    .doodle-company {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .doodle-desc {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+}
